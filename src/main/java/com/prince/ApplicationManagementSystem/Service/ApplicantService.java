@@ -1,6 +1,7 @@
 package com.prince.ApplicationManagementSystem.Service;
 
 import com.prince.ApplicationManagementSystem.Entity.Applicant;
+import com.prince.ApplicationManagementSystem.Entity.Resume;
 import com.prince.ApplicationManagementSystem.Repository.ApplicantJpaRepository;
 import com.prince.ApplicationManagementSystem.Repository.ApplicationCrudRepository;
 import com.prince.ApplicationManagementSystem.Repository.ApplicationPaggingSortingRepo;
@@ -41,6 +42,9 @@ public class ApplicantService {
     }
 
     public Applicant saveApplicant(Applicant applicant) {
+        Resume resume = applicant.getResume();
+        if(resume!=null){
+        resume.setApplicant(applicant);}
        Applicant savedApplicant= applicationCrudRepository.save(applicant);
        return  savedApplicant;
 

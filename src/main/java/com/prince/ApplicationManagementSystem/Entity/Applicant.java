@@ -1,10 +1,7 @@
 package com.prince.ApplicationManagementSystem.Entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Applicant {
@@ -16,6 +13,17 @@ public class Applicant {
     private  String name;
     private  String email;
     private  String phone;
+
+    @OneToOne(mappedBy = "applicant" ,cascade = CascadeType.ALL)
+    private Resume resume;
+
+    public Resume getResume() {
+        return resume;
+    }
+
+    public void setResume(Resume resume) {
+        this.resume = resume;
+    }
 
     public Long getId() {
         return id;
