@@ -3,6 +3,9 @@ package com.prince.ApplicationManagementSystem.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Applicant {
 
@@ -16,6 +19,17 @@ public class Applicant {
 
     @OneToOne(mappedBy = "applicant" ,cascade = CascadeType.ALL)
     private Resume resume;
+
+    @OneToMany(mappedBy = "applicant",cascade = CascadeType.ALL)
+    List<Application> applications = new ArrayList<>();
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
+    }
 
     public Resume getResume() {
         return resume;

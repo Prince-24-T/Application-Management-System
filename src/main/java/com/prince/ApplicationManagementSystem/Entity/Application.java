@@ -4,19 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-public class Resume {
-
-
-    @Id
+public class Application
+{
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String status;
+    private String position;
 
-    private  String content;
-
-    @OneToOne
-    @JoinColumn(name ="applicantId" , nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "applicantId" , nullable = false)
     @JsonIgnore
-    private  Applicant applicant;
+    private Applicant applicant;
 
     public Long getId() {
         return id;
@@ -26,12 +25,20 @@ public class Resume {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getStatus() {
+        return status;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public Applicant getApplicant() {
